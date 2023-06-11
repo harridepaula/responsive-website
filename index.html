@@ -14,17 +14,24 @@
 <body>
   <header class="primary-header">
     <div class="container">
-      <a href="#"><img src="images/innovize-logo.png" width="180px"></a>
-      <nav class="primary-navigation">
-        <ul aria-label="Primary" role="list" class="nav-list">
-          <li><a href="#">Pricing</a></li>
-          <li><a href="#">Product</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Careers</a></li>
-          <li><a href="#">Community</a></li>
-        </ul>
-      </nav>
-      <button class="btn btn--primary">Get Started</button>
+      <div class="nav-wrapper">
+        <a href="#"><img src="images/innovize-logo.png" width="160px"></a>
+        <button class="mobile-nav-toggle" aria-controls="primary-navigation">
+          <img class="icon-hamburger" src="images/hamburger-menu-black.png" alt="Hamburger menu" aria-hidden="true" width="30px">
+          <img class="icon-close" src="images/icon-close.png" alt="Close menu" aria-hidden="true">
+          <span class="visually-hidden">Menu</span>
+        </button>
+        <nav class="primary-navigation">
+          <ul aria-label="Primary" role="list" class="nav-list" id="primary-navigation">
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">Product</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Community</a></li>
+          </ul>
+        </nav>
+        <button class="btn btn--primary" style="display: none">Get Started</button>
+      </div>
     </div>
   </header>
 
