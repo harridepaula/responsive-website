@@ -2,10 +2,11 @@
 :root {
   --clr-primary-400: #3a4982;
 
-  --clr-accent-100: #f69292;
-  --clr-accent-300: #f25f4c;
-  --clr-accent-400: #e1483a;
-  --clr-accent-500: #d1392e;
+  --clr-accent-100: #eea0c8;
+  --clr-accent-200: #e87dbf;
+  --clr-accent-300: #e05fb3;
+  --clr-accent-400: #d93da6;
+  --clr-accent-500: #d12e82;
 
   --clr-neutral-100: #f5f5f5;
   --clr-neutral-200: #d8d8d8;
@@ -18,6 +19,7 @@
   --fw-regular: 400;
   --fw-bold: 700;
 
+  --fs-200: 0.75rem;
   --fs-300: 1rem;
   --fs-400: 1.2rem;
   --fs-500: 1.4rem;
@@ -27,7 +29,7 @@
 
   --fs-body: var(--fs-300);
   --fs-button: var(--fs-300);
-  --fs-nav: var(--fs-400);
+  --fs-nav: var(--fs-300);
   --fs-secondary-heading: var(--fs-600);
   --fs-primary-heading: var(--fs-700);
 
@@ -40,16 +42,6 @@
   --size-700: 2.5rem;
   --size-800: 3rem;
   --size-900: 4rem;
-}
-
-@media (min-width: 50em) {
-  :root {
-    --fs-body: var(--fs-400);
-    --fs-button: var(--fs-400);
-    --fs-nav: var(--fs-500);
-    --fs-secondary-heading: var(--fs-700);
-    --fs-primary-heading: var(--fs-800);
-  }
 }
 
 *,
@@ -87,7 +79,11 @@ body {
   line-height: 1.5;
 }
 
-/* A elements that don't have a class get default styles */
+/* A elements */
+a {
+  text-decoration: none;
+}
+
 a:not([class]) {
   text-decoration-skip-ink: auto;
 }
@@ -114,6 +110,116 @@ svg {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* General styles */
+body {
+  font-size: var(--fs-body);
+  font-family: var(--ff-body);
+  color: var(--clr-neutral-900);
+
+}
+
+/* Button styles */
+.button {
+  display: inline-flex;
+  font-size: var(--fs-button);
+  font-weight: var(--fw-bold);
+  color: var(--clr-neutral-100);
+  background-color: var(--clr-accent-400);
+  box-shadow: 0 1.25em 1em -1em var(--clr-accent-500);
+  border: none;
+  border-radius: 100vmax;
+  padding: 1.5em 2em;
+  cursor: pointer;
+  text-decoration: none;
+  line-height: 0;
+}
+
+.button:hover, .button:focus-visible {
+  background-color: var(--clr-accent-300);
+}
+
+.button[data-type="inverted"] {
+  background-color: var(--clr-neutral-100);
+  color: var(--clr-accent-400);
+}
+
+.button[data-type="inverted"]:hover, .button[data-type="inverted"]:focus-visible {
+  background-color: var(--clr-neutral-100);
+  color: var(--clr-accent-300);
+}
+
+
+/* Navigation styles */
+.primary-header {
+  margin-top: var(--size-700);
+}
+
+.nav-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mobile-nav-toggle {
+  display: none;
+}
+
+.nav-list {
+  display: flex;
+  gap: clamp(var(--size-400), 2vw, var(--size-700));
+}
+
+@media (max-width: 55em) {
+  .primary-navigation {
+    display: none;
+    position: absolute;
+    padding: var(--size-700);
+    inset: 7rem var(--size-400) auto;
+    background: var(--clr-neutral-100);
+    border-radius: var(--size-100);
+    box-shadow: 0 0 0.75rem rgb(0 0 0 / 0.05), 0 0 0 1000vmax rgb(0 0 0 / 0.75);
+    height: fit-content;
+  }
+
+  .nav-list {
+    display: grid;
+    gap: var(--size-600);
+    text-align: center;
+    font-size: var(--fs-nav);
+    font-weight: var(--fw-bold);
+  }
+
+  .nav-list a {
+    text-decoration: none;
+    color: var(--clr-neutral-900);
+  }
+
+  .nav-list a:hover, .nav-list a:focus {
+    color: var(--clr-accent-400);
+  }
+
+  .primary-navigation[data-visible] {
+    display: block;
+  }
+
+  .mobile-nav-toggle {
+    display: block;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    padding: 0.5em;
+  }
+  
+  .mobile-nav-toggle .icon-close {
+    display: none;
+  }
+}
+
+.opened {
+  display: block;
+  position: fixed;
 }
 
 /* Utility classes */
@@ -225,85 +331,33 @@ svg {
   margin-inline: auto;
 }
 
+.display-sm-none {
+  display: none;
+}
+
+@media (min-width: 55em) {
+  .display-md-inline {
+    display: inline-flex;
+  }
+}
+
 .even-columns {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
 }
 
-@media (min-width: 50em) {
+@media (min-width: 55em) {
+  :root {
+    --fs-nav: var(--fs-200);
+    --fs-body: var(--fs-400);
+    --fs-button: var(--fs-400);
+    --fs-secondary-heading: var(--fs-700);
+    --fs-primary-heading: var(--fs-800);
+  }
+
   .even-columns {
     grid-auto-flow: column;
     grid-auto-columns: 1fr;
-  }
-}
-
-/* General styles */
-body {
-  font-size: var(--fs-body);
-  font-family: var(--ff-body);
-  color: var(--clr-neutral-900);
-
-}
-
-/* Button styles */
-.button {
-  font-size: var(--fs-button);
-  font-weight: var(--fw-bold);
-  color: var(--clr-neutral-100);
-  background-color: var(--clr-accent-400);
-  box-shadow: 0 1.25em 1em -1em var(--clr-accent-500);
-  border: none;
-  border-radius: 100vmax;
-  padding: 1em 2.5em;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.button:hover, .button:focus-visible {
-  background-color: var(--clr-accent-300);
-}
-
-.button[data-type="inverted"] {
-  background-color: var(--clr-neutral-100);
-  color: var(--clr-accent-400);
-}
-
-.button[data-type="inverted"]:hover, .button[data-type="inverted"]:focus-visible {
-  background-color: var(--clr-neutral-100);
-  color: var(--clr-accent-300);
-}
-
-
-/* Navigation styles */
-.primary-header {
-  margin-top: var(--size-700);
-}
-
-.nav-wrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.mobile-nav-toggle {
-  display: none;
-}
-
-@media (max-width: 50em) {
-  .primary-navigation {
-    display: none;
-  }
-
-  .mobile-nav-toggle {
-    display: block;
-    cursor: pointer;
-    background: transparent;
-    border: none;
-    padding: 0.5em;
-  }
-  
-  .mobile-nav-toggle .icon-close {
-    display: none;
   }
 }
